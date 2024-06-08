@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const db = mysql.createPool({
-  host: 'localhost',
+  host: `${window.location.origin}`,
   user: 'root',
   password: '',
   database: 'food_expiry',
@@ -42,6 +42,6 @@ app.delete('/api/delete/:id', (req, res) => {
   })
 })
 
-app.listen(3001, () => {
-  console.log('running on port 3001')
+app.listen(process.env.PORT | PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })

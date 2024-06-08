@@ -9,14 +9,14 @@ function App() {
   const [foodList, setFoodList] = useState([])
 
   useEffect(() => {
-    Axios.get('http://localhost:3001/api/get').then((response) => {
+    Axios.get(`${window.location.origin}/api/get`).then((response) => {
       setFoodList(response.data)
     })
   }, [])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    Axios.post('http://localhost:3001/api/insert', {
+    Axios.post(`${window.location.origin}/api/insert`, {
       type: name,
       brand: brand,
       expiry: expiry,
@@ -36,7 +36,7 @@ function App() {
   }
 
   const deleteHandler = (id) => {
-    Axios.delete(`http://localhost:3001/api/delete/${id}`)
+    Axios.delete(`${window.location.origin}/api/delete/${id}`)
     setFoodList(
       foodList.filter((item) => {
         return item.id !== id
